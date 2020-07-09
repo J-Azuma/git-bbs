@@ -5,6 +5,57 @@
 <title>Insert title here</title>
 </head>
 <body>
+<form th:action="@{/insertArticle}" th:object="${articleForm}"
+		method="post">
+		<div th:errors="*{name}" style="color: red"></div>
+		投稿者名 : <input type="text" name="name" th:field="*{name}"> <br />
+		<div th:errors="*{content}" style="color: red"></div>
+		投稿内容 :
+		<textarea name="content" cols="30" rows="10" th:field="*{content}"></textarea>
+		<br /> <br />
+		<button>記事投稿</button>
+	</form>
 
+	<div th:each="article : ${articleList}">
+		<hr />
+		投稿者名: <span th:text="${article.name}"></span> <br /> 投稿内容: <span
+			th:text="${article.content}"></span> <br /> <br /> <br />
+
+		<!--article delete button  -->
+		<form th:action="@{/delete-article}" method="post">
+			<input type="hidden" name="articleId" th:value="${article.id}" />
+			<button>記事削除</button>
+		</form>
+
+		<form action="">
+			<button id="like-count-button" th:value="${article.id}">aaa</button>
+			<span th:id="'likecount-for-' + ${article.id}">0</span>
+		</form>
+
+		<!-- commentList of article  -->
+		<div th:each=" comment : ${article.commentList}">
+			コメント者名 : <span th:text="${comment.name}"></span> <br /> コメント内容 : <br />
+			<strong th:text="${comment.content}"></strong> <br /> <br />
+		</div>
+
+		<!-- comment insert form  -->
+		<form th:action="@{/insertComment}" method="post"
+			th:object="${commentForm}">
+			<input type="hidden" name="articleId" th:value="${article.id}" />
+			<div th:if="${article.id} == *{articleId}" th:errors="*{name}"
+				style="color: red"></div>
+			名前 : <br /> <span th:if="${article.id} == *{articleId}"><input
+				type="text" name="name" th:field="*{name}"><br /></span> <span
+				th:unless="${article.id} == *{articleId}"><input type="text"
+				name="name"><br /></span>
+			<div th:if="${article.id} == *{articleId}" th:errors="*{content}"
+				style="color: red"></div>
+			コメント : <br /> <span th:if="${article.id} == *{articleId}"><textarea
+					name="content" th:field="*{content}" cols="30" rows="10"></textarea>
+				<br /></span> <span th:unless="${article.id} == *{articleId}"><textarea
+					name="content" cols="30" rows="10"></textarea> <br /></span> <br /> <br />
+			<button>コメント投稿</button>
+		</form>
+		</div>
 </body>
 </html>
