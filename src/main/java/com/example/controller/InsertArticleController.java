@@ -1,7 +1,5 @@
 package com.example.controller;
 
-import javax.servlet.ServletContext;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +13,6 @@ import com.example.domain.Article;
 import com.example.form.ArticleForm;
 import com.example.form.CommentForm;
 import com.example.repository.ArticleRepository;
-import com.example.repository.CommentRepository;
 
 @Controller
 @RequestMapping("/insertArticle")
@@ -37,7 +34,7 @@ public class InsertArticleController {
 	@RequestMapping("")
 	public String insertArticle(@Validated ArticleForm form, BindingResult result, Model model) {
 		if (result.hasErrors()) {
-			return new ShowBbsController().index(model);
+			return new ShowBbsController().error(model,articleRepository);
 		}
 		Article article = new Article();
 		BeanUtils.copyProperties(form, article);

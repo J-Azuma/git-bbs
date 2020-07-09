@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.Comment;
 import com.example.form.CommentForm;
+import com.example.repository.ArticleRepository;
 import com.example.repository.CommentRepository;
 
 @Controller
@@ -18,8 +19,6 @@ public class InsertCommentController {
 	
 	@Autowired
 	private CommentRepository commentRepository;
-	
-	
 
 	/**
 	 * コメント投稿を行う.

@@ -44,5 +44,18 @@ public class ShowBbsController {
 
 		return "bbs";
 	}
+	
+	@RequestMapping("/error")
+	public String error(Model model,ArticleRepository articleRepository) {
+		
+		List<Article> articles = articleRepository.findAll();
+		
+		model.addAttribute("articleList", articles);
+		
+		System.out.println(model.getAttribute("articleList"));
+		
+		return "bbs";
+	}
+	
 
 }
