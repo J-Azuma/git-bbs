@@ -11,6 +11,7 @@ import com.example.domain.Comment;
 import com.example.form.CommentForm;
 import com.example.repository.CommentRepository;
 
+@RequestMapping("")
 public class InsertCommentController {
 	
 	@Autowired
@@ -33,7 +34,7 @@ public class InsertCommentController {
 		BeanUtils.copyProperties(form, comment);
 		comment.setArticleId(Integer.parseInt(form.getArticleId()));
 		commentRepository.insert(comment);
-		return "redirect:/bbs/";
+		return "redirect:/show-bbs/";
 	}
 	
 }

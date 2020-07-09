@@ -38,9 +38,9 @@ public class ShowBbsController {
 
 		List<Article> articles = articleRepository.findAll();
 
-		model.addAttribute("articles", articles);
+		model.addAttribute("articleList", articles);
 
-		return "ex-bbs";
+		return "bbs";
 	}
 
 }
