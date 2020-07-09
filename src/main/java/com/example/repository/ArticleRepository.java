@@ -9,11 +9,14 @@ import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.stereotype.Repository;
 
 import com.example.domain.Article;
 import com.example.domain.Comment;
 
+@Repository
 public class ArticleRepository {
+	
 	@Autowired
 	private NamedParameterJdbcTemplate template;
 

@@ -2,6 +2,7 @@ package com.example.controller;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -11,6 +12,7 @@ import com.example.domain.Comment;
 import com.example.form.CommentForm;
 import com.example.repository.CommentRepository;
 
+@Controller
 @RequestMapping("")
 public class InsertCommentController {
 	
@@ -34,7 +36,7 @@ public class InsertCommentController {
 		BeanUtils.copyProperties(form, comment);
 		comment.setArticleId(Integer.parseInt(form.getArticleId()));
 		commentRepository.insert(comment);
-		return "redirect:/show-bbs/";
+		return "redirect:/show-bbs";
 	}
 	
 }
